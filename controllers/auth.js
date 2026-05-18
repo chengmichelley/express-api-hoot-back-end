@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 
+// SIGN IN
 router.post("/sign-in", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username });
@@ -22,6 +23,7 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
+// SIGN UP
 router.post("/sign-up", async (req, res) => {
   try {
     const foundUserInDB = await User.findOne({ username: req.body.username });

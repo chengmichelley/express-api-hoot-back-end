@@ -7,7 +7,8 @@ const logger = require('morgan');
 const testController = require("./controllers/test-jwt")
 const authController = require('./controllers/auth')
 const userController = require('./controllers/user')
-const verifyJwt = require('./middlewares/verify-jwt')
+const verifyToken = require('./middlewares/verify-token.js')
+const hootsRouter = require("./controllers/hoots.js");
 
 require('./db/connection')
 
@@ -18,8 +19,9 @@ app.use(logger('dev'));
 // Routes
 app.use('/auth', authController)
 
-app.use(verifyJwt)  // Authorization check
+app.use(verifyToken)  // Authorization check
 app.use('/users', userController)
+app.use("/hoots", hootsRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');
